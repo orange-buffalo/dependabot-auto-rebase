@@ -1,0 +1,12 @@
+name: 'Dependabot Auto Rebase'
+description: 'Requests Dependabot to rebase PR on push to main branch'
+inputs:
+  api-token:
+    description: 'API token, should be set to ${{ secrets.GITHUB_TOKEN }}'
+    required: true
+  repository:
+    description: 'Repository to rebase, typically will be set to ${{ github.repository }}'
+    required: true
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
