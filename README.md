@@ -45,6 +45,17 @@ jobs:
           repository: ${{ github.repository }}
 ```
 
+It is recommended to disable Dependabot rebases by setting `rebase-strategy` to `disabled` in the
+`.github/dependabot.yml` file:
+```yaml
+version: 2
+updates:
+  - ...
+    rebase-strategy: "disabled"
+```
+With default rebase strategy, both this action and Dependabot will rebase PRs with conflicts, 
+causing more noise and extra CI runs.
+
 ## Limitations
 
 * This action only works with repositories that use Dependabot for dependency management.
