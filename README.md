@@ -18,10 +18,10 @@ Once Dependabot provides a fix, this action will no longer be necessary.
 
 ## Inputs
 
-| Name         | Description                                                                                                                                                                             | Required |
-|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
-| `api-token`  | The API token used for authentication. This token must have permission to access the specified repository and *cannot be* default GH token. | Yes |
-| `repository` | The name of the repository in the format `owner/repo`. This is the repository where Dependabot's pull requests will be checked and rebased. Typically, should be `${{ github.repository }}` | Yes      |
+| Name         | Description                                                                                                                                                                                                                                                    | Required |
+|--------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
+| `api-token`  | The API token used for authentication. This token *cannot be* the default GH token. It must have `repo:public_repo` permissions for Classic Tokens. For Fine-grained Tokens, it requires `Commit statuses` and `Pull requests` permissions on the target repo. | Yes |
+| `repository` | The name of the repository in the format `owner/repo`. This is the repository where Dependabot's pull requests will be checked and rebased. Typically, should be `${{ github.repository }}`                                                                    | Yes      |
 
 ## Example usage
 
