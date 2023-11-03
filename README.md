@@ -20,7 +20,7 @@ Once Dependabot provides a fix, this action will no longer be necessary.
 
 | Name         | Description                                                                                                                                                                                                                                                    | Required |
 |--------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
-| `api-token`  | The API token used for authentication. This token *cannot be* the default GH token. It must have `repo:public_repo` permissions for Classic Tokens. For Fine-grained Tokens, it requires `Commit statuses` and `Pull requests` permissions on the target repo. | Yes |
+| `api-token`  | The API token used for authentication. It must have `repo:public_repo` permissions for Classic Tokens. For Fine-grained Tokens, it requires `Commit statuses` and `Pull requests` permissions on the target repo. | Yes |
 | `repository` | The name of the repository in the format `owner/repo`. This is the repository where Dependabot's pull requests will be checked and rebased. Typically, should be `${{ github.repository }}`                                                                    | Yes      |
 
 ## Example usage
@@ -37,11 +37,15 @@ on:
 jobs:
   rebase-dependabot:
     runs-on: ubuntu-latest
+    permissions:
+      checks: read
+      contents: write
+      pull-requests: write
     steps:
       - name: "Rebase open Dependabot PR"
         uses: orange-buffalo/dependabot-auto-rebase@v1
         with:
-          api-token: ${{ secrets.MY_PERSONAL_TOKEN }}
+          api-token: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository }}
 ```
 
